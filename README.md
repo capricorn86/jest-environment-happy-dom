@@ -1,2 +1,11 @@
-# jest-environment-happy-dom
-An alternative to jsdom with support for web components.
+# Happy DOM
+A Jest DOM environment with support for web components.
+
+# How to Install
+
+```bash
+npm install jest-environment-happy-dom
+```
+
+# Usage
+

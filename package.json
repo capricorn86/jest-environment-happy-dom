@@ -1,0 +1,47 @@
+{
+	"name": "jest-environment-happy-dom",
+	"version": "0.0.1",
+	"license": "MIT",
+	"homepage": "https://github.com/capricorn86/jest-environment-happy-dom#readme",
+	"repository": "https://github.com/capricorn86/jest-environment-happy-dom",
+	"author": "David Ortner",
+	"description": "A Jest DOM environment with support for web components.",
+	"main": "lib/index.js",
+	"keywords": [
+		"jest",
+		"environment",
+		"jsdom",
+		"happy",
+		"dom",
+		"webcomponents",
+		"web",
+		"component",
+		"custom",
+		"elements"
+	],
+	"scripts": {
+		"compile": "tsc",
+		"watch": "tsc -w --preserveWatchOutput",
+		"lint": "eslint --max-warnings 0 --fix './src/**/*.ts'"
+	},
+	"dependencies": {
+		"@jest/environment": "^24.3.0",
+		"@jest/fake-timers": "^24.3.0",
+		"@jest/types": "^24.3.0",
+		"node-fetch": "2.5.0",
+		"jest-mock": "^24.0.0",
+		"jest-util": "^24.0.0"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^1.9.0",
+		"@typescript-eslint/parser": "^1.9.0",
+		"@types/node": "^12.6.8",
+		"@types/jest": "^24.0.11",
+		"jest": "^24.1.0",
+		"eslint": "^5.16.0",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-plugin-prettier": "^3.0.1",
+		"prettier": "^1.16.4",
+		"typescript": "^3.4.5"
+	}
+}
