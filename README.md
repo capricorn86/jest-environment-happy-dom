@@ -50,10 +50,6 @@ This guide will explain how to tell Jest to use Happy DOM by setting a CLI attri
         ...
         "scripts": {
             "test": "jest --env=jest-environment-happy-dom"
-        },
-        "devDependencies": {
-            "jest": "^24.8.0",
-            "jest-environment-happy-dom": "^0.0.1"
         }
     }
     ```
