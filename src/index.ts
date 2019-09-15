@@ -1,20 +1,19 @@
 import VM from 'vm';
+import JestUtils from 'jest-util';
 import { ModuleMocker } from 'jest-mock';
-import { JestFakeTimers as FakeTimers } from '@jest/fake-timers';
+import { JestFakeTimers } from '@jest/fake-timers';
 import { JestEnvironment, EnvironmentContext } from '@jest/environment';
-import { Window } from 'happy-dom';
+import { AsyncWindow } from 'happy-dom';
 import { Script } from 'vm';
 import { Global, Config } from '@jest/types';
-import { installCommonGlobals } from 'jest-util';
 
 /**
  * Happy DOM Jest Environment.
  */
 export default class HappyDOMEnvironment implements JestEnvironment {
-	public fakeTimers: FakeTimers<number> | null;
-	public global: Global.Global;
-	public moduleMocker: ModuleMocker | null;
-	private context: VM.Context = this.createContext();
+	public fakeTimers: JestFakeTimers<number> = null;
+	public global: Global.Global = <Global.Global>this.createContext();
+	public moduleMocker: ModuleMocker = new ModuleMocker(this.global);
 
 	/**
 	 * Constructor.
@@ -23,26 +22,30 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 	 * @param {EnvironmentContext} options Options.
 	 */
 	constructor(config: Config.ProjectConfig, options: EnvironmentContext = {}) {
-		const global = <Global.Global>(<unknown>new Window());
-		const moduleMocker = new ModuleMocker(global);
+		const global = this.global;
 		const timerConfig = {
 			idToRef: (id: number) => id,
 			refToId: (ref: number) => ref
 		};
 
+		// Node's error-message stack size is limited at 10, but it's pretty useful
+		// to see more than that when a test fails.
+		global.Error.stackTraceLimit = 100;
+
+		debugger;
+		JestUtils.installCommonGlobals(this.global, config.globals);
+
 		if (options.console) {
 			global.console = options.console;
+			global.window.console = options.console;
 		}
 
-		this.global = global;
-		this.fakeTimers = new FakeTimers({
+		this.fakeTimers = new JestFakeTimers({
 			config,
 			global,
-			moduleMocker,
+			moduleMocker: this.moduleMocker,
 			timerConfig
 		});
-
-		installCommonGlobals(this.global, config.globals);
 	}
 
 	/**
@@ -60,15 +63,11 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 	 * @return {Promise<void>} Promise.
 	 */
 	public teardown(): Promise<void> {
-		if (this.fakeTimers) {
-			this.fakeTimers.dispose();
-		}
-
-		if (this.global) {
-			this.global.dispose();
-		}
+		this.fakeTimers.dispose();
+		this.global.window.dispose();
 
 		this.global = null;
+		this.moduleMocker = null;
 		this.fakeTimers = null;
 
 		return Promise.resolve();
@@ -81,10 +80,7 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 	 * @returns {any} Result.
 	 */
 	public runScript(script: Script): null {
-		if (this.context) {
-			return this.context.runVMScript(script);
-		}
-		return null;
+		return script.runInContext(this.global);
 	}
 
 	/**
@@ -93,8 +89,7 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 	 * @return {VM.Context} Context.
 	 */
 	private createContext(): VM.Context {
-		const window = new Window();
-		const global = Object.assign({}, window, { window });
-		return VM.createContext(global);
+		const window = new AsyncWindow();
+		return VM.createContext(Object.assign({}, global, window, { window }));
 	}
 }
