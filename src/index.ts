@@ -31,8 +31,7 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 		// Node's error-message stack size is limited at 10, but it's pretty useful
 		// to see more than that when a test fails.
 		global.Error.stackTraceLimit = 100;
-
-		debugger;
+		
 		JestUtils.installCommonGlobals(this.global, config.globals);
 
 		if (options.console) {
