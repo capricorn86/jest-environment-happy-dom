@@ -14,8 +14,6 @@ A Jest DOM environment with support for web components.
 - Mutation Observer
 
 - Tree Walker
-
-- Fetch
   
 
   And much more..
