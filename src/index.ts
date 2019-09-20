@@ -31,6 +31,10 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 		// Node's error-message stack size is limited at 10, but it's pretty useful
 		// to see more than that when a test fails.
 		global.Error.stackTraceLimit = 100;
+
+		// Removes fetch for security reasons and it should be mocked anyway
+		delete this.global.fetch;
+		delete this.global.window.fetch;
 		
 		JestUtils.installCommonGlobals(this.global, config.globals);
 
