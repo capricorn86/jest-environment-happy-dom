@@ -57,8 +57,8 @@ Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default
 1. Edit your "package.json" file.
 2. Add the following to it:
     ```json
-    "jest": {
-        {
+    {
+        "jest": {
             "testEnvironment": "jest-environment-happy-dom"
         }
     }
