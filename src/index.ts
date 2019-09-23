@@ -32,7 +32,10 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 		// to see more than that when a test fails.
 		global.Error.stackTraceLimit = 100;
 
-		debugger;
+		// Removes fetch for security reasons and it should be mocked anyway
+		delete this.global.fetch;
+		delete this.global.window.fetch;
+		
 		JestUtils.installCommonGlobals(this.global, config.globals);
 
 		if (options.console) {
