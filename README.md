@@ -56,6 +56,7 @@ Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default
 
 1. Edit your "package.json" file.
 2. Add the following to it:
+
     ```json
     {
         "jest": {
@@ -63,6 +64,7 @@ Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default
         }
     }
     ```
+
 3. Save the file.
 
 
@@ -70,11 +72,13 @@ Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default
 ## Configuration File
 1. Edit your Jest config file (usually jest.config.js)
 2. Add the following to it:
+
     ```json
     {
       "testEnvironment": "jest-environment-happy-dom"
     }
     ```
+
 3. Save the file.
 
 
