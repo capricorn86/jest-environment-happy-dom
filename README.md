@@ -32,20 +32,17 @@ npm install jest-environment-happy-dom --save-dev
 
 # Setup
 
-Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default. In order to tell Jest to use a different environment we will either have to set a CLI attribute or add a property your Jest config file.
+Jest uses [jsdom](https://github.com/jsdom/jsdom) as test environment by default. In order to tell Jest to use a different environment we will either have to set a CLI attribute, define it in "package.json" or add a property your Jest config file.
 
 
 
 ## CLI
 
-This guide will explain how to tell Jest to use Happy DOM by setting a CLI attribute.
-
-1. Edit package.json
+1. Edit your "package.json" file.
 2. Add "--env=jest-environment-happy-dom" as an attribute to your Jest command.
 
     ```json
     {
-        ...
         "scripts": {
             "test": "jest --env=jest-environment-happy-dom"
         }
@@ -55,19 +52,33 @@ This guide will explain how to tell Jest to use Happy DOM by setting a CLI attri
 3. Save the file.
 
 
+## In "package.json"
 
-## Configuration File
-
-This guide will explain how to tell Jest to use Happy DOM by adding a property to your Jest config file.
-
-1. Edit your Jest config file (usually jest.config.js)
+1. Edit your "package.json" file.
 2. Add the following to it:
+
     ```json
     {
-      ...
+        "jest": {
+            "testEnvironment": "jest-environment-happy-dom"
+        }
+    }
+    ```
+
+3. Save the file.
+
+
+
+## Configuration File
+1. Edit your Jest config file (usually jest.config.js)
+2. Add the following to it:
+
+    ```json
+    {
       "testEnvironment": "jest-environment-happy-dom"
     }
     ```
+
 3. Save the file.
 
 
