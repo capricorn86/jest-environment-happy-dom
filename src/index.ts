@@ -35,7 +35,7 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 		// Removes fetch for security reasons and it should be mocked anyway
 		delete this.global.fetch;
 		delete this.global.window.fetch;
-		
+
 		JestUtils.installCommonGlobals(this.global, config.globals);
 
 		if (options.console) {
@@ -92,7 +92,6 @@ export default class HappyDOMEnvironment implements JestEnvironment {
 	 * @return {VM.Context} Context.
 	 */
 	private createContext(): VM.Context {
-		const window = new AsyncWindow();
-		return VM.createContext(Object.assign({}, global, window, { window }));
+		return VM.createContext(new AsyncWindow());
 	}
 }
