@@ -95,6 +95,7 @@ If you have a need for a missing feature or if you have found a bug, please let 
 
 | Version | Date       | Description      |
 | ------- | ---------- | ---------------- |
+| 0.0.22  | 2019-10-07 | Fixes bug where global.Error is undefined. |
 | 0.0.1   | 2019-09-13 | Initial release. |
 
 
