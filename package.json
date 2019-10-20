@@ -21,6 +21,7 @@
 	],
 	"scripts": {
 		"compile": "tsc",
+		"prepublish": "npm run compile",
 		"watch": "tsc -w --preserveWatchOutput",
 		"lint": "eslint --max-warnings 0 --fix './src/**/*.ts'"
 	},
@@ -28,7 +29,7 @@
 		"@jest/environment": "^24.3.0",
 		"@jest/fake-timers": "^24.3.0",
 		"@jest/types": "^24.3.0",
-		"happy-dom": "^0.4.3",
+		"happy-dom": "^0.4.9",
 		"node-fetch": "2.5.0",
 		"jest-mock": "^24.0.0",
 		"jest-util": "^24.0.0"
