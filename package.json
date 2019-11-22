@@ -21,7 +21,7 @@
 	],
 	"scripts": {
 		"compile": "tsc",
-		"prepublish": "npm run compile",
+		"prepublishOnly": "npm run compile",
 		"watch": "tsc -w --preserveWatchOutput",
 		"lint": "eslint --max-warnings 0 --fix './src/**/*.ts'"
 	},
