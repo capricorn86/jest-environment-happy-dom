@@ -30,7 +30,7 @@
 		"@jest/fake-timers": "^24.3.0",
 		"@jest/types": "^24.3.0",
 		"happy-dom": "^0.14.1",
-		"node-fetch": "2.5.0",
+		"node-fetch": "2.6.1",
 		"jest-mock": "^24.0.0",
 		"jest-util": "^24.0.0"
 	},
