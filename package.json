@@ -32,7 +32,7 @@
 		"happy-dom": "^0.14.1",
 		"jest-mock": "^24.0.0",
 		"jest-util": "^24.0.0",
-		"node-fetch": "^2.6.1"
+		"node-fetch": "^3.1.1"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^1.9.0",
